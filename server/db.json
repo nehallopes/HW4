@@ -1,0 +1,32 @@
+{
+  "posts": [
+    {
+      "id": "Date.now()",
+      "author": "user",
+      "title": "title",
+      "description": "description",
+      "complete": "false",
+      "dateCreated": "formattedDate",
+      "dateCompleted": null
+    }
+  ],
+  "users": [
+    {
+      "email": "nehaltest@gmail.com",
+      "password": "$2a$10$bRCcg82aGkEa6bYqxLstK.1rQqW4oujKC3B3hZR0apS3.TZ.rx.Zq",
+      "id": 1
+    }
+  ],
+  "themes": [
+    {
+      "id": 1,
+      "primaryColor": "deepskyblue",
+      "secondaryColor": "coral"
+    },
+    {
+      "primaryColor": "red",
+      "secondaryColor": "green",
+      "id": 2
+    }
+  ]
+}
