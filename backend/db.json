@@ -15,6 +15,51 @@
       "email": "nehaltest@gmail.com",
       "password": "$2a$10$bRCcg82aGkEa6bYqxLstK.1rQqW4oujKC3B3hZR0apS3.TZ.rx.Zq",
       "id": 1
+    },
+    {
+      "email": "test2@gmail.com",
+      "password": "$2a$10$n/7eAjxQ4Jlvpe9eZNTD2eOf6qSTaRXuunuMfDSuUZ6FLAaHXi1H2",
+      "id": 2
+    },
+    {
+      "email": "test@gmail.com",
+      "password": "$2a$10$WuBo40AwyRbXFJz7aqjjWufUzSHx83JpCihVLWocQ/ybwKtbiVZnC",
+      "id": 3
+    },
+    {
+      "email": "test3@gmail.com",
+      "password": "$2a$10$y3I73qA5KAahKoy03to7Luc6t.NNbJc8xX.7omuxOGfe8iFB7hF6i",
+      "id": 4
+    },
+    {
+      "email": "test5@gmail.com",
+      "password": "$2a$10$eX51hquSTDTLWO.FAlF.GuKE0QcaV0mKZD4kD0R5k/XZ29/e0.pIq",
+      "id": 5
+    },
+    {
+      "email": "test4@gmail.com",
+      "password": "$2a$10$IxtUj.U52iSOwf/DOXZuXueZUhRV.n0rLrkXWURtk7sg34iBKvW9W",
+      "id": 6
+    },
+    {
+      "email": "test6@gmail.com",
+      "password": "$2a$10$58.niYPjXeODA3EQ2e8VQuTQB4EUF0bIo3q5nyOjewJDiLFiDdvBG",
+      "id": 7
+    },
+    {
+      "email": "test7@gmail.com",
+      "password": "$2a$10$lgIbnBNwPsGVFNBVjl4g3.KVj33dlU4p3tdlqeF4GcQA0ZOZtHjGa",
+      "id": 8
+    },
+    {
+      "email": "test8@gmail.com",
+      "password": "$2a$10$rDsBk7fMKWfPD.LuzS/Tw.9kmEhWYS.rMiZ7JN/IVPdwwwCMIdSdq",
+      "id": 9
+    },
+    {
+      "email": "test10@gmail.com",
+      "password": "$2a$10$j0x2C6M9JQtp/dgTwFVIZexGiQezfObl4kbk.D.NC4QlkP1QPpqR6",
+      "id": 10
     }
   ],
   "themes": [

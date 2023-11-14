@@ -1,9 +1,10 @@
-import { useState, useContext } from "react";
+import React, { useContext, useState, useEffect } from 'react';
 import { useResource } from "react-request-hook";
 import { StateContext } from "./contexts";
 import { TodoList } from './TodoList';
 
 export default function CreateTodo({ user }) {
+  
   const [todos, setTodos] = useState([]);
 
   const handleAddTodo = (newTodo) => {

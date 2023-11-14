@@ -47,7 +47,7 @@ function App() {
   }, [user]);
 
   return (
-    <div>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', minHeight: '100vh', padding: '20px' }}>
       <StateContext.Provider value={{ state, dispatch }}>
         <ThemeContext.Provider value={theme}>
           <Header text="Todo" />
