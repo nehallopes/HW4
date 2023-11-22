@@ -23,17 +23,18 @@ function App() {
   const [postResponse, getPosts] = useResource(() => ({
     url: "/post",
     method: "get",
+    headers: {Authorization: `${state?.user?.access_token}`}
   }));
 
   useEffect(() => {
     getPosts();
-  }, [state?.user?.access_token]);
+  }, [state?.user?.access_token, getPosts]);
 
   useEffect(() => {
     if (postResponse && postResponse.isLoading === false && postResponse.data) {
-      dispatch({ type: "FETCH_POSTS", posts: postResponse.data.reverse() });
+      dispatch({ type: "FETCH_POSTS", posts: postResponse.data.posts.reverse() });
     }
-  }, [postResponse]);
+  }, [postResponse, dispatch]);
 
   useEffect(() => {
     if (user) {

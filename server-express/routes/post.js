@@ -11,7 +11,7 @@ router.use(function (req, res, next) {
       req.payload = jwt.verify(req.header("Authorization"), privateKey, {
         algorithms: ["RS256"],
       });
-      next();
+      next(); 
     } catch (error) {
       return res.status(401).json({ error: error.message });
     }

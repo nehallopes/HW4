@@ -16,7 +16,7 @@ export default function CreateTodo() {
     url: "/post",
     method: "post",
     headers: { Authorization: `${state.user.access_token}` },
-    data: { title, content },
+    data: { title, content, author: user._id },
   }));
 
   const [deleteRequest, deletePost] = useResource((todoId) => ({

@@ -4,6 +4,9 @@ const PostSchema = new Schema({
   title: { type: String, required: true },
   content: { type: String, required: true },
   author: { type: Schema.Types.ObjectId, ref: "User" },
+  dateCreated: {type: Date, default: Date.now},
+  complete: {type: Boolean, default: false},
+  dateCompleted: {type: Date, default: null}
 });
 
 module.exports = mongoose.model("Post", PostSchema);
