@@ -1,8 +1,10 @@
 function userReducer  (state, action)  {
     switch (action.type) {
       case "LOGIN":
-      case "REGISTER":
-        return action.username;
+        return{
+          username: action.username,
+          access_token: action.access_token,
+        };
       case "LOGOUT":
         return "";
       default:
@@ -19,17 +21,12 @@ function userReducer  (state, action)  {
           title: action.title,
           content: action.content,
           author: action.author,
-          dispatch: action.dispatch,
         };
         return [newTodo, ...state];
-      case "TOGGLE_TODO":
-        if(!action.complete){
-          document.getElementById(action.title).innerHTML="Completed on: "+new Date(Date.now()).toString();
-        }
-        else{
-          document.getElementById(action.title).innerHTML="";
-        }
-        return state;
+        
+      case "FETCH_TODO":
+        return action.posts;
+
       case "DELETE_TODO":
 
         const index = state.map(t => t.title).indexOf(action.title);

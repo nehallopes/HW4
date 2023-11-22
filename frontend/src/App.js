@@ -10,37 +10,34 @@ import { ThemeContext, StateContext } from "./contexts";
 function App() {
   const [state, dispatch] = useReducer(appReducer, {
     user: "",
-    addedTodos: [],
     posts: [],
   });
 
-  const { user } = state;
+  const { user, posts } = state;
 
   const [theme, setTheme] = useState({
     primaryColor: "orange",
     secondaryColor: "purple",
   });
 
-  const addTodo = (newTodo) => {
-    dispatch({ type: "CREATE_TODO", newTodo });
-  };
-
   const [postResponse, getPosts] = useResource(() => ({
-    url: "/posts",
+    url: "/post",
     method: "get",
   }));
 
-  useEffect(getPosts, []);
+  useEffect(() => {
+    getPosts();
+  }, [state?.user?.access_token]);
 
   useEffect(() => {
-    if (postResponse && postResponse.data) {
+    if (postResponse && postResponse.isLoading === false && postResponse.data) {
       dispatch({ type: "FETCH_POSTS", posts: postResponse.data.reverse() });
     }
   }, [postResponse]);
 
   useEffect(() => {
     if (user) {
-      document.title = `${user}'s Todo`;
+      document.title = `${user.username}'s Todo`;
     } else {
       document.title = 'Todo';
     }

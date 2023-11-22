@@ -1,49 +1,41 @@
-import React, { useState,useEffect, useContext } from 'react';
+import React, { useState,useEffect } from 'react';
 import { useResource } from "react-request-hook";
-import { StateContext } from './contexts';
 
+export default function Register({dispatch}) {
 
-export default function Register() {
+    const [ status, setStatus ] = useState("");
 
-    const [ username, setUsername ] = useState('')
+    const [username, setUsername] = useState("");
 
-    const [ password, setPassword ] = useState('')
+    const [ password, setPassword ] = useState("");
 
-    const [ passwordRepeat, setPasswordRepeat ] = useState('')
-
-    const [success, setSuccess] = useState(false);
-    const { dispatch } = useContext(StateContext);
+    const [ passwordRepeat, setPasswordRepeat ] = useState("");
 
     const [user, register] = useResource((username, password) => ({
-        url: "/users",
+        url: "/auth/register",
         method: "post",
-        data: { email: username, password },
+        data: { username, password, passwordConfirmation: password },
       }));
     
       useEffect(() => {
-        if (user && user.data) {
-          dispatch({ type: "REGISTER", username: user.data.email });
-          setSuccess(true);
+        if (user && user.isLoading === false && (user.data || user.error)) {
+          if (user.error) {
+            setStatus("Registration failed, please try again.");
+          } else {
+            setStatus("Registration successful.");
+          }
         }
-      }, [user, dispatch]);
+      }, [user]);
       
     function handleUsername (evt) { setUsername(evt.target.value) }
     function handlePassword (evt) { setPassword(evt.target.value) }
     function handlePasswordRepeat (evt) { setPasswordRepeat(evt.target.value) }
 
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      if (password === passwordRepeat) {
-          register(username, password);
-      } else {
-          alert("Passwords do not match!");
-      }
-  };
 
     return (
       <div style={{ textAlign: 'center' }}>
       <p>{'Register as a new user'}</p>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={(e) => { e.preventDefault(); register(username, password);}}>
       <div style={{ margin: '10px 0' }}>
           <label htmlFor="register-username">Username:</label>
           <input type="text" name="register-username" id="register-username" onChange={handleUsername} value={username} />
@@ -59,6 +51,7 @@ export default function Register() {
         <div style={{ margin: '10px 0' }}>
           <input type="submit" value="Register" disabled={username.length === 0 || password.length === 0 || password !== passwordRepeat} />
         </div>
+        {status && <p>{status}</p>}
       </form>
       </div>
     )

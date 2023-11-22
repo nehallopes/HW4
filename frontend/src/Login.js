@@ -1,33 +1,35 @@
-import React, { useState,useEffect, useContext } from 'react';
+import React, { useState,useEffect } from 'react';
 import { useResource } from "react-request-hook";
-import { StateContext } from './contexts';
 
 
-export default function Login() {
+export default function Login({dispatch}) {
 
     const [username, setUsername] = useState("");
     const [loginFailed, setLoginFailed] = useState(false);
 
     const [password, setPassword] = useState("");
-    const {dispatch} = useContext(StateContext);
 
 
     const [user, login] = useResource((username, password) => ({
-        url: "/login",
+        url: "/auth/login",
         method: "post",
-        data: { email: username, password },
+        data: { username, password },
       }));
     
       useEffect(() => {
-        if (user) {
-          if (user?.data?.user) {
-            setLoginFailed(false);
-            dispatch({ type: "LOGIN", username: user.data.user.email });
-          } else {
+        if (user && user.isLoading === false && (user.data || user.error)) {
+          if (user.error) {
             setLoginFailed(true);
+          } else {
+            setLoginFailed(false);
+          dispatch({
+          type: "LOGIN",
+          username: "User",
+          access_token: user.data.access_token,
+          });
           }
         }
-      }, [user, dispatch]);
+      }, [user]);
       
     function handleUsername (evt) {setUsername(evt.target.value);}
     function handlePassword (evt) {setPassword(evt.target.value);}

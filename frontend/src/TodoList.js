@@ -13,7 +13,7 @@ export function TodoList({ todos, handleCompleteToggle, handleDeleteTodo }) {
           <li key={todo.id}>
             <strong>Author:</strong> {todo.author}<br />
             <strong>Title:</strong> {todo.title}<br />
-            <strong>Description:</strong> {todo.description}<br />
+            <strong>Description:</strong> {todo.content}<br />
             <strong>Date Created:</strong> {todo.dateCreated}<br />
             <strong>Complete:</strong> {todo.complete ? 'Yes' : 'No'}<br />
             <label>

@@ -60,6 +60,27 @@
       "email": "test10@gmail.com",
       "password": "$2a$10$j0x2C6M9JQtp/dgTwFVIZexGiQezfObl4kbk.D.NC4QlkP1QPpqR6",
       "id": 10
+    },
+    {
+      "email": "test11@gmail.com",
+      "password": "$2a$10$bN4dLr44BoptC7EJ6ZtmmOS6AQlUsHopukHYhYBi7JFnvoMkUKA1i",
+      "id": 11
+    },
+    {
+      "email": "test12@gmail.com",
+      "password": "$2a$10$IYzKSTcMEnF3gkxIwo3ZS.CmkmQlXHY2oyeovCH58VYbkzdAfXBuG",
+      "id": 12
+    },
+    {
+      "email": "test13@gmail.com",
+      "password": "$2a$10$BcCDa/mD0GrMF9pZmjRNtulg2PJj/Ps/N4sD35ZM1xq6A00dWM2Yu",
+      "id": 13
+    },
+    {
+      "email": "test30@gmail.com",
+      "password": "$2a$10$DblkTZOkwd6kv7ugIo0HH.rAQTf/.sjpYUNAUgTVLvzosmHbktuwu",
+      "passwordConfirmation": "test2",
+      "id": 14
     }
   ],
   "themes": [

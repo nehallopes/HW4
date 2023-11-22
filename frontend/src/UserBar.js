@@ -19,8 +19,8 @@ export default function UserBar() {
   } else {
     return (
       <>
-        <Login dispatchUser={dispatchUser} />
-        <Register dispatchUser={dispatchUser} />
+        <Login dispatch={dispatchUser} />
+        <Register dispatch={dispatchUser} />
       </>
     );
   }

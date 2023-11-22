@@ -5,7 +5,7 @@ import ThemeItem from "./ThemeItem";
 
 export default function ChangeTheme({ theme, setTheme }) {
 
-  const [themes, getThemes] = useResource((getThemes) => ({
+  const [themes, getThemes] = useResource(() => ({
     url: "/themes",
     method: "get",
   }));

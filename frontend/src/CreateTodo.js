@@ -3,15 +3,32 @@ import { useResource } from "react-request-hook";
 import { StateContext } from "./contexts";
 import { TodoList } from './TodoList';
 
-export default function CreateTodo({ user }) {
+export default function CreateTodo() {
   
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
   const [todos, setTodos] = useState([]);
+
+  const { state, dispatch } = useContext(StateContext);
+  const { user } = state;
+
+  const [post, createPost] = useResource(({ title, content }) => ({
+    url: "/post",
+    method: "post",
+    headers: { Authorization: `${state.user.access_token}` },
+    data: { title, content },
+  }));
+
+  const [deleteRequest, deletePost] = useResource((todoId) => ({
+    url: `/post/${todoId}`,
+    method: "delete",
+    headers: { Authorization: `${state.user.access_token}` },
+  }));
 
   const handleAddTodo = (newTodo) => {
     setTodos([...todos, newTodo]);
   };
 
-  
   const handleCompleteToggle = (todoId) => {
     const updatedTodos = todos.map((todo) => {
       if (todo.id === todoId) {
@@ -35,12 +52,20 @@ export default function CreateTodo({ user }) {
   };
 
   const handleDeleteTodo = (todoId) => {
+    deletePost(todoId);
+  
     const updatedTodos = todos.filter((todo) => todo.id !== todoId);
     setTodos(updatedTodos);
   };
+  
 
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
+  function handleTitle(evt) {
+    setTitle(evt.target.value);
+  }
+  function handleContent(evt) {
+    setContent(evt.target.value);
+  }
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -54,9 +79,9 @@ export default function CreateTodo({ user }) {
 
     const newTodo = {
       id: Date.now(),
-      author: user,
+      author: user.username,
       title: title,
-      description: description,
+      content: content,
       complete: false,
       dateCreated: formattedDate,
       dateCompleted: null,
@@ -64,15 +89,27 @@ export default function CreateTodo({ user }) {
 
     handleAddTodo(newTodo);
 
-    setTitle('');
-    setDescription('');
+    const newPost = { title, content };
+    createPost(newPost);
   };
+
+  useEffect(() => {
+    if (post.isLoading === false && post.data) {
+      dispatch({
+        type: "CREATE_POST",
+        title: post.data.title,
+        content: post.data.content,
+        id: post.data.id,
+        author: user.username,
+      });
+    }
+  }, [post, dispatch, user]);
 
   return (
     <div>
       <form onSubmit={handleSubmit}>
         <div>
-          <div>Author: <b>{user}</b></div>
+          <div>Author: <b>{user.username}</b></div>
           <label htmlFor="todo-title">Todo Title:</label>
           <input
             type="text"
@@ -85,8 +122,8 @@ export default function CreateTodo({ user }) {
           <label htmlFor="todo-description">Description:</label>
           <textarea
             id="todo-description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
           />
         </div>
         <div>
